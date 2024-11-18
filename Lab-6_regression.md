@@ -320,30 +320,48 @@ model_summaries
     ## Multiple R-squared:  0.05064,    Adjusted R-squared:  0.04931 
     ## F-statistic: 38.08 on 1 and 714 DF,  p-value: 1.136e-09
 
-{Discussion here} 1. Rainfall (`rain_20_sum`): - Shows the strongest
-positive association with NDVI. - Explains 42.73% of the variance in
-NDVI. - Highlights rainfall as a critical driver of vegetation.
+{Discussion here} 1. Maximum temperature: the results indicate a
+significant negative impact on the dependent variable. Specifically, for
+each one-unit increase in maximum temperature, the dependent variable
+decreases by approximately 0.0131 units on average. This relationship is
+highly significant (p\<2e−16), suggesting that maximum temperature plays
+an important role in explaining variations in the dependent variable.
+The model explains 20.55% of the variance.
 
-2.  Maximum Temperature (`maxtemp_20_med`):
-    - Has a significant negative relationship with NDVI.
-    - Explains 20.66% of the variance.
-    - Indicates that higher temperatures reduce vegetation levels.
-3.  Minimum Temperature (`mintemp_20_med`):
-    - Also shows a significant negative relationship with NDVI.
-    - Explains 14.18% of the variance.
-    - Suggests that cooler minimum temperatures favor vegetation.
-4.  Population (`pop_20`):
-    - Displays a weak but significant positive relationship with NDVI.
-    - Explains 12.28% of the variance.
-    - Likely reflects indirect effects of human activity on vegetation.
-5.  Elevation (`elev_med`):
-    - Shows a weak but significant positive relationship with NDVI.
-    - Explains only 5.06% of the variance.
-    - Indicates minimal influence of terrain on vegetation.
-6.  Water Percentage (`water_20_pct`):
-    - No significant relationship with NDVI.
-    - Explains only 0.19% of the variance.
-    - Suggests limited or inconsistent influence on vegetation.
+2.  Minimum Temperature: the analysis also reveals a significant
+    negative relationship. Each one-unit increase in minimum temperature
+    results in an average decrease of 0.0123 units in the dependent
+    variable. This relationship is statistically significant (p\<2e−16),
+    though the model explains a smaller portion of the variance, at
+    14.06%.
+
+3.  Rainfall: the results show a significant positive effect on the
+    dependent variable. For every one-unit increase in rainfall, the
+    dependent variable increases by approximately 0.0000009124 units on
+    average. Although the effect size is small, the relationship is
+    highly significant (p\<2e−16), and this model demonstrates a strong
+    explanatory power, accounting for 42.65% of the variance.
+
+4.  Population: population has a significant positive influence on the
+    dependent variable. Each one-unit increase in population corresponds
+    to an average increase of 0.0000015 units in the dependent variable.
+    This relationship is highly significant (p\<2e−16), though the
+    model’s explanatory power is limited, explaining only 12.16% of the
+    variance.
+
+5.  Water Percentage: the results suggest that the variable does not
+    have a significant relationship with the dependent variable
+    (p=0.249). While the coefficient indicates a potential negative
+    trend (a decrease of 0.1783 units in the dependent variable for
+    every 1% increase in water coverage), this effect is not
+    statistically significant, and the model explains only 0.05% of the
+    variance.
+
+6.  Elevation: indicates a significant positive effect on the dependent
+    variable. For each one-unit increase in elevation, the dependent
+    variable increases by approximately 0.000179 units on average. This
+    relationship is statistically significant (p=1.14e−9), but the model
+    explains only a small portion of the variance, at 4.93%.
 
 In conclusion, rainfall and temperature are the most significant factors
 influencing NDVI, with rainfall playing the dominant role. Other

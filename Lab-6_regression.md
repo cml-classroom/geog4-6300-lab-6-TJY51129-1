@@ -22,7 +22,8 @@ lab6_data<-st_read("data/aus_climate_inat.gpkg")
 ```
 
     ## Reading layer `aus_climate_inat' from data source 
-    ##   `/Users/jiayi/Downloads/lab6/data/aus_climate_inat.gpkg' using driver `GPKG'
+    ##   `/Users/jiayi/Downloads/lab. 6/data/aus_climate_inat.gpkg' 
+    ##   using driver `GPKG'
     ## Simple feature collection with 716 features and 22 fields
     ## Geometry type: POLYGON
     ## Dimension:     XY
@@ -546,6 +547,19 @@ library(car)
     ##     some
 
 ``` r
+library(lmtest)
+```
+
+    ## Loading required package: zoo
+
+    ## 
+    ## Attaching package: 'zoo'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     as.Date, as.Date.numeric
+
+``` r
 # Calculate VIF for the multivariate model
 vif_values <- vif(multi_model)
 print(vif_values)
@@ -554,11 +568,46 @@ print(vif_values)
     ## maxtemp_20_med    rain_20_sum         pop_20       elev_med 
     ##       1.098705       1.078449       1.173863       1.009305
 
+``` r
+# Check for heteroskedasticity with the Breusch-Pagan test
+bp_test <- bptest(multi_model)
+print(bp_test)
+```
+
+    ## 
+    ##  studentized Breusch-Pagan test
+    ## 
+    ## data:  multi_model
+    ## BP = 122.21, df = 4, p-value < 2.2e-16
+
+``` r
+# Plot residuals vs. fitted values for a visual check of heteroskedasticity
+plot(
+  fitted(multi_model),
+  residuals(multi_model),
+  main = "Residuals vs. Fitted Values",
+  xlab = "Fitted Values",
+  ylab = "Residuals",
+  col = "blue",
+  pch = 16
+)
+abline(h = 0, col = "red")
+```
+
+![](Lab-6_regression_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
 {Interpretation goes here} The Variance Inflation Factor (VIF) values
 for all variables in the model are below 1.2, indicating very low
 multicollinearity. This suggests that the independent variables are not
 highly correlated, and their individual effects can be reliably
 estimated.
+
+The results of the Breusch-Pagan test (BP = 122.21, df = 4, p-value \<
+2.2e-16) indicate significant heteroskedasticity in the model residuals,
+as the p-value is well below 0.05, leading us to reject the null
+hypothesis of homoskedasticity. This suggests that the variance of
+residuals is not constant across fitted values. The residuals vs. fitted
+values plot visually confirm the presence of heteroskedasticity.
 
 **Question 9** *How would you summarise the results of this model in a
 sentence or two? In addition, looking at the full model and your

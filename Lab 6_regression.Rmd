@@ -224,14 +224,33 @@ And the results of Moran's I test show that the residuals exhibit significant po
 
 ```{r}
 library(car)
+library(lmtest)
 
 # Calculate VIF for the multivariate model
 vif_values <- vif(multi_model)
 print(vif_values)
+
+# Check for heteroskedasticity with the Breusch-Pagan test
+bp_test <- bptest(multi_model)
+print(bp_test)
+
+# Plot residuals vs. fitted values for a visual check of heteroskedasticity
+plot(
+  fitted(multi_model),
+  residuals(multi_model),
+  main = "Residuals vs. Fitted Values",
+  xlab = "Fitted Values",
+  ylab = "Residuals",
+  col = "blue",
+  pch = 16
+)
+abline(h = 0, col = "red")
 ```
 
 {Interpretation goes here}
 The Variance Inflation Factor (VIF) values for all variables in the model are below 1.2, indicating very low multicollinearity. This suggests that the independent variables are not highly correlated, and their individual effects can be reliably estimated. 
+
+The results of the Breusch-Pagan test (BP = 122.21, df = 4, p-value < 2.2e-16) indicate significant heteroskedasticity in the model residuals, as the p-value is well below 0.05, leading us to reject the null hypothesis of homoskedasticity. This suggests that the variance of residuals is not constant across fitted values. The residuals vs. fitted values plot visually confirm the presence of heteroskedasticity. 
 
 **Question 9** _How would you summarise the results of this model in a sentence or two? In addition, looking at the full model and your diagnostics, do you feel this is a model that provides meaningful results? Explain your answer._
 The regression model shows that rainfall and maximum temperature are the most significant predictors of NDVI, with rainfall positively and temperature negatively associated with vegetation. The adjusted $R^2$ value of 63.76% indicates a strong model fit, and the F-statistic confirms its significance. In addition, the histogram of residuals suggests near-normality and the Moran’s I test highlights significant spatial autocorrelation in the residuals. This indicates that the model fails to fully account for spatial dependencies.
